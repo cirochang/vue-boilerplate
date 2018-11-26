@@ -1,8 +1,9 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -16,14 +17,7 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            js: {
-               loader: 'babel-loader'
-            },
-          }
-          // other vue-loader options go here
-        }
+        exclude: /node_modules/,
       },
       {
         test: /\.js$/,
@@ -32,24 +26,25 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [{
-          loader: "style-loader" // creates style nodes from JS strings
-        }, {
-          loader: "css-loader" // translates CSS into CommonJS
-        }, {
-          loader: "sass-loader" // compiles Sass to CSS
-        }]
+        use: [
+          "vue-style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader", // compiles Sass to CSS
+        ],
       },
       {
         test: /\.css$/, // Only .css files
-        loader: "style-loader!css-loader"
+        use: [
+          "vue-style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+        ],
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg|jpg|gif)$/,
         loader: 'url-loader',
         options: {
-            limit: 8000, // Convert images < 8kb to base64 strings
-            name: 'images/[hash]-[name].[ext]'
+          limit: 8000, // Convert images < 8kb to base64 strings
+          name: 'images/[hash]-[name].[ext]'
         }
       }
     ]
@@ -84,7 +79,8 @@ module.exports.plugins = [
     'window.jQuery': 'jquery',
     jQuery: 'jquery'
   }),
-  new CleanWebpackPlugin(['dist'], {})
+  new CleanWebpackPlugin(['dist'], {}),
+  new VueLoaderPlugin(),
 ];
 
 if (process.env.NODE_ENV === 'production') {
@@ -97,7 +93,7 @@ if (process.env.NODE_ENV === 'production') {
     new UglifyJsPlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
   ]);
 }else{
   module.exports.plugins = (module.exports.plugins || []).concat([
