@@ -5,8 +5,8 @@
   "author": "Ciro Chang <cirochang@live.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --mode development --open --disable-host-check --hot --inline --port 8080 --host 0.0.0.0",
-    "build": "webpack --mode production --progress --hide-modules"
+    "dev": "webpack-dev-server --disable-host-check --progress --inline --port 8080 --host 0.0.0.0 --config build/webpack.dev.conf.js",
+    "build": "webpack --progress --hide-modules --config build/webpack.prod.conf.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -20,7 +20,6 @@
     "@babel/preset-env": "^7.1.6",
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^1.0.0",
-    "cross-env": "^5.0.5",
     "css-loader": "^1.0.1",
     "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0",
@@ -32,6 +31,7 @@
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4",
     "write-file-webpack-plugin": "^4.5.0"
   }
 }
