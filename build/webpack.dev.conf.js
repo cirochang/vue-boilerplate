@@ -10,7 +10,7 @@ module.exports = merge(webpackBaseConf, {
     noInfo: true,
     overlay: true,
     publicPath: '/',
-    hot: true,
+    inline: true,
     open: true,
   },
   plugins: [
