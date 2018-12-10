@@ -1,14 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
     filename: 'build.js'
   },
@@ -72,15 +70,6 @@ module.exports = {
       '@': path.resolve('src'),
     }
   },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true,
-    publicPath: '/'
-  },
-  performance: {
-    hints: false
-  },
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).
@@ -93,37 +82,14 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
-  devtool: '#eval-source-map'
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jquery: 'jquery',
+      'window.jQuery': 'jquery',
+      jQuery: 'jquery'
+    }),
+    new CleanWebpackPlugin(['dist'], {}),
+    new VueLoaderPlugin(),
+  ],
 };
-
-//For any env
-module.exports.plugins = [
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jquery: 'jquery',
-    'window.jQuery': 'jquery',
-    jQuery: 'jquery'
-  }),
-  new CleanWebpackPlugin(['dist'], {}),
-  new VueLoaderPlugin(),
-];
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map';
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': require('config/env-prod')
-    }),
-    new UglifyJsPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    }),
-  ]);
-}else{
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': require('config/env-dev')
-    }),
-    new WriteFilePlugin()
-  ]);
-}
