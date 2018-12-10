@@ -1,3 +1,5 @@
+const webpackConfig = require('../../build/webpack.test.conf')
+
 module.exports = function karmaConfig (config) {
   config.set({
     // to run in additional browsers:
@@ -11,6 +13,7 @@ module.exports = function karmaConfig (config) {
     preprocessors: {
       'index.js': ['webpack', 'sourcemap']
     },
+    webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
     },
