@@ -1,15 +1,16 @@
 {
   "name": "vue-boilerplate",
   "description": "This is a simple boilerplate for Vue",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "author": "Ciro Chang <cirochang@live.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --disable-host-check --progress --inline --port 8080 --host 0.0.0.0 --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --disable-host-check --progress --hot --port 8080 --host 0.0.0.0 --config build/webpack.dev.conf.js",
     "build": "webpack --progress --hide-modules --config build/webpack.prod.conf.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "js-cookie": "^2.2.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.2",
     "vuex": "^3.0.1"
@@ -23,7 +24,7 @@
     "css-loader": "^1.0.1",
     "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0",
-    "uglifyjs-webpack-plugin": "^2.0.1",
+    "uglifyjs-webpack-plugin": "^1.3.0",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.4.2",
     "vue-style-loader": "^4.1.2",
