@@ -4,20 +4,19 @@ import Cookies from 'js-cookie';
 // initial state
 const state = {
   currentUser: null,
-  // Just for now
-  // isLoggedIn: !!Cookies.get('token'),
-  isLoggedIn: true,
+  isLoggedIn: !!Cookies.get('token'),
 };
 
 // getters
 const getters = {
   currentUser: state => state.currentUser,
-  isLoggedIn: state => state.isLoggedIn,
+  // isLoggedIn: state => state.isLoggedIn,
+  isLoggedIn: () => true, // Just for now
 };
 
 // actions
 const actions = {
-  async getCurrentUser ({ commit }) {
+  async getCurrentUser({ commit }) {
     const { data } = await api.getCurrentUser();
     commit('SET_CURRENT_USER', data.user);
   },
@@ -32,16 +31,16 @@ const actions = {
 
 // mutations
 const mutations = {
-  LOGIN_SUCCESS (state, token) {
-    Cookies.set('token', token, { expires: 1});
+  LOGIN_SUCCESS(state, token) {
+    Cookies.set('token', token, { expires: 1 });
     state.isLoggedIn = true;
   },
-  LOGOUT (state) {
+  LOGOUT(state) {
     Cookies.remove('token');
     state.currentUser = null;
     state.isLoggedIn = false;
   },
-  SET_CURRENT_USER (state, user) {
+  SET_CURRENT_USER(state, user) {
     state.currentUser = user;
   },
 };
@@ -50,5 +49,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
 };

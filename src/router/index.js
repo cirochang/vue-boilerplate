@@ -14,7 +14,7 @@ export default new VueRouter({
         {
           name: 'Home',
           path: '/',
-          component: Home
+          component: Home,
         },
       ],
     },

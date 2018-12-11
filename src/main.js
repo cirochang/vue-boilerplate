@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import Vue from 'vue';
 
-//CSS imports
+// CSS imports
 import '@/assets/css/main.css';
 
 import router from '@/router';
@@ -10,8 +11,8 @@ import App from '@/App.vue';
 
 // Instantiate application to the DOM
 const app = new Vue({
-    router,
-    el: '#app',
-    store,
-    render: h => h(App)
+  router,
+  el: '#app',
+  store,
+  render: h => h(App),
 });

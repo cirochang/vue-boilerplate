@@ -1,20 +1,19 @@
 <template>
   <div v-if="isLoggedIn">
-    <router-view></router-view>
+    <RouterView />
   </div>
   <div v-else>
-    <v-login></v-login>
+    <Login />
   </div>
 </template>
 
 <script>
 import Login from '@/components/Login.vue';
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'app',
   components: {
-    'v-login': Login,
+    Login,
   },
   computed: mapGetters(['isLoggedIn']),
   watch: {
@@ -22,15 +21,15 @@ export default {
       immediate: true,
       async handler(newVal) {
         // Get Current User if is already logged in
-        if(newVal) {
+        if (newVal) {
           try {
-            await this.$store.dispatch("getCurrentUser");
+            await this.$store.dispatch('getCurrentUser');
           } catch (error) {
-            this.$store.dispatch("logout");
+            this.$store.dispatch('logout');
           }
         }
-      }
-    }
+      },
+    },
   },
-}
+};
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div id='v-card'>
+  <div id="Card">
     Hi, I am the card
   </div>
 </template>
