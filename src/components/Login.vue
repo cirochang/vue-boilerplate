@@ -1,5 +1,5 @@
 <template>
-  <div id="v-login">
+  <div id="Login">
     Hi, I am the login
   </div>
 </template>

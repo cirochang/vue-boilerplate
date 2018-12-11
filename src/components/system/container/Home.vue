@@ -1,7 +1,7 @@
 <template>
-  <div id='v-home'>
+  <div id="Home">
     Hi, I am the home container
-    <v-card></v-card>
+    <Card />
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import Card from '@/components/modules/Card.vue';
 
 export default {
   components: {
-    'v-card': Card,
+    Card,
   },
-}
+};
 </script>

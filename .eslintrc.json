@@ -1,0 +1,22 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "mocha": true,
+      "jest": true
+    },
+   "parserOptions": {
+       "parser": "babel-eslint"
+   },
+  "extends": [
+      "airbnb-base",
+      "plugin:vue/recommended"
+  ],
+  "rules": {
+    "no-shadow": ["error", { "allow": ["state"] }],
+    "no-param-reassign": [2, {"props": false}],
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+  }
+}

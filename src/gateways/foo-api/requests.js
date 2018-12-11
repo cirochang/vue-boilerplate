@@ -1,23 +1,23 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const BACKEND_EXAMPLE = () => {
+const BACKEND_API = () => {
   const req = axios.create({
     baseURL: process.env.BACKEND_API_URI_EXAMPLE,
     headers: {
-      'token': Cookies.get('token'),
+      token: Cookies.get('token'),
     },
   });
   return req;
-}
+};
 
 export default {
 
-  login (credentials) {
+  login(credentials) {
     return BACKEND_API().post('/auth', credentials);
   },
 
-  getCurrentUser () {
+  getCurrentUser() {
     return BACKEND_API().get('/current_user');
   },
 

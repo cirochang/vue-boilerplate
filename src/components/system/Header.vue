@@ -1,5 +1,5 @@
 <template>
-  <div id='v-side-bar'>
+  <div id="Header">
     Hi, I am the header
   </div>
 </template>
